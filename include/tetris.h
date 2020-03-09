@@ -9,6 +9,7 @@
 #define HEADER_TETRIS
 
 #include <stdbool.h>
+#include "mylist.h"
 
 typedef struct tetris
 {
@@ -41,6 +42,7 @@ struct flag_association
 int tetris_game(tetris_flags_t tetris_flags);
 tetris_flags_t init_flags(void);
 bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags);
+void show_debug(tetris_flags_t tetris_flags, list_t *tetriminos);
 
 /* Flags functions */
 bool print_help(tetris_flags_t *tetris_flags, char const *option);

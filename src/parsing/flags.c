@@ -40,7 +40,7 @@ bool flag_map(tetris_flags_t *flags, char const *option)
         return (false);
     if (called == 1)
         flags->nb_rows = my_getnbr(option);
-    else
+    else if (called == 2)
         flags->nb_cols = my_getnbr(option);
     return (called <= 2);
 }
