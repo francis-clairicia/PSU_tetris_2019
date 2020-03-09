@@ -7,7 +7,12 @@
 
 SRC_NO_TEST			=	src/main.c
 
-SRC_TEST			=	src/tetris.c
+SRC_TEST			=	src/tetris.c				\
+						src/init_flags.c			\
+						src/parse_args.c			\
+						src/print_help.c			\
+						src/parsing/flags.c			\
+						src/parsing/flags_keys.c
 
 SRC					=	$(SRC_NO_TEST) $(SRC_TEST)
 

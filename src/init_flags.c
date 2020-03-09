@@ -23,6 +23,5 @@ tetris_flags_t init_flags(void)
     flags.nb_cols = 10;
     flags.show_next = FALSE;
     flags.debug = false;
-
     return (flags);
 }
