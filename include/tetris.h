@@ -11,6 +11,8 @@
 #include <stdbool.h>
 #include "mylist.h"
 
+#define UNUSED __attribute__((unused))
+
 typedef struct tetris
 {
     int level;
@@ -39,10 +41,16 @@ struct flag_association
     flag_function_t function;
 };
 
-int tetris_game(tetris_flags_t tetris_flags);
+int tetris_game(tetris_flags_t options);
+void show_debug(tetris_flags_t option, list_t *tetriminos);
+void tetris_gameloop(tetris_flags_t options, list_t *tetriminos);
+int my_usleep(int useconds);
+
+void print_game(tetris_flags_t options, list_t *tetriminos);
+void print_map(int nb_rows, int nb_cols);
+
 tetris_flags_t init_flags(void);
 bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags);
-void show_debug(tetris_flags_t tetris_flags, list_t *tetriminos);
 
 /* Flags functions */
 bool print_help(tetris_flags_t *tetris_flags, char const *option);

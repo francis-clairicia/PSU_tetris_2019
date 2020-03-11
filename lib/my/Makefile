@@ -35,7 +35,6 @@ SRC			=	my_put_nbr.c				\
 				my_compute_power_rec.c		\
 				my_strlowcase.c				\
 				my_str_to_word_array.c		\
-				my_free_word_array.c		\
 				my_array_len.c				\
 				my_array_dup.c				\
 				my_strdup.c					\
@@ -61,7 +60,7 @@ SRC			=	my_put_nbr.c				\
 				get_next_line.c				\
 				join_path.c					\
 				my_memset.c					\
-				my_malloc.c
+				my_malloc_array.c
 
 PRINTF		=	printf/my_printf.c					\
 				printf/my_printf_number.c			\

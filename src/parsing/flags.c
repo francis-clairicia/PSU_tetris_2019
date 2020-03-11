@@ -28,7 +28,7 @@ bool flag_level(tetris_flags_t *flags, char const *option)
     if (option == NULL || !my_str_isnum(option))
         return (false);
     flags->level = my_getnbr(option);
-    return (called == 1);
+    return (called == 1 && flags->level >= 1);
 }
 
 bool flag_map(tetris_flags_t *flags, char const *option)
@@ -36,17 +36,16 @@ bool flag_map(tetris_flags_t *flags, char const *option)
     static int called = 0;
 
     called = called + 1;
-    if (option == NULL || my_strlen(option) != 1)
+    if (option == NULL || !my_str_isnum(option))
         return (false);
     if (called == 1)
         flags->nb_rows = my_getnbr(option);
     else if (called == 2)
         flags->nb_cols = my_getnbr(option);
-    return (called <= 2);
+    return (called <= 2 && flags->nb_rows > 1 && flags->nb_cols > 1);
 }
 
-bool flag_next(tetris_flags_t *flags,
-    char const *option __attribute__((unused)))
+bool flag_next(tetris_flags_t *flags, char const *option UNUSED)
 {
     static int called = 0;
 
@@ -55,8 +54,7 @@ bool flag_next(tetris_flags_t *flags,
     return (called == 1);
 }
 
-bool flag_debug(tetris_flags_t *flags,
-    char const *option __attribute__((unused)))
+bool flag_debug(tetris_flags_t *flags, char const *option UNUSED)
 {
     static int called = 0;
 

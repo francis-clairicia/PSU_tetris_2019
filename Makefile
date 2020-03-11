@@ -17,7 +17,11 @@ SRC_TEST			=	src/tetris.c							\
 						src/tetriminos/load_tetriminos.c		\
 						src/tetriminos/destroy_tetrimino_list.c	\
 						src/tetriminos/create_tetrimino.c		\
-						src/tetriminos/destroy_tetrimino.c
+						src/tetriminos/destroy_tetrimino.c		\
+						src/my_usleep.c							\
+						src/game/gameloop.c						\
+						src/game/print_game.c					\
+						src/game/print_map.c
 
 SRC					=	$(SRC_NO_TEST) $(SRC_TEST)
 

@@ -7,7 +7,7 @@
 
 #include <stddef.h>
 
-char const *my_strchr(char const *str, int c)
+char *my_strchr(char *str, int c)
 {
     int i = 0;
 
