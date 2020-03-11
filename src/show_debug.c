@@ -9,21 +9,22 @@
 #include "tetris.h"
 #include "my.h"
 
-static char *ascii_value(int c)
+static void print_key(char const *str_key, int key)
 {
-    if (c == ' ')
-        return ("(space)");
-    return ((char []){c, '\0'});
+    if (key == ' ')
+        my_printf("Key %s :  (space)\n", str_key);
+    else
+        my_printf("Key %s :  %c\n", str_key, key);
 }
 
 static void print_flags(tetris_flags_t tetris_flags)
 {
-    my_printf("Key Left :  %s\n", ascii_value(tetris_flags.keys[LEFT]));
-    my_printf("Key Right :  %s\n", ascii_value(tetris_flags.keys[RIGHT]));
-    my_printf("Key Turn :  %s\n", ascii_value(tetris_flags.keys[TURN]));
-    my_printf("Key Drop :  %s\n", ascii_value(tetris_flags.keys[DROP]));
-    my_printf("Key Quit :  %s\n", ascii_value(tetris_flags.keys[QUIT]));
-    my_printf("Key Pause :  %s\n", ascii_value(tetris_flags.keys[PAUSE]));
+    print_key("Left", tetris_flags.keys[LEFT]);
+    print_key("Right", tetris_flags.keys[RIGHT]);
+    print_key("Turn", tetris_flags.keys[TURN]);
+    print_key("Drop", tetris_flags.keys[DROP]);
+    print_key("Quit", tetris_flags.keys[QUIT]);
+    print_key("Pause", tetris_flags.keys[PAUSE]);
     my_printf("Next :  %s\n", (tetris_flags.show_next) ? "Yes" : "No");
     my_printf("Level :  %d\n", tetris_flags.level);
     my_printf("Size :  %d*%d\n", tetris_flags.nb_rows, tetris_flags.nb_cols);

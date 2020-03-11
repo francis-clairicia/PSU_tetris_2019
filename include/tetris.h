@@ -57,4 +57,14 @@ bool flag_map(tetris_flags_t *flags, char const *option);
 bool flag_next(tetris_flags_t *flags, char const *option);
 bool flag_debug(tetris_flags_t *flags, char const *option);
 
+typedef struct tetrimino
+{
+    ;
+} tetrimino_t;
+
+list_t *load_tetriminos(void);
+void destroy_tetrimino_list(list_t **list);
+tetrimino_t *create_tetrimino(char const *tetrimino_path);
+void destroy_tetrimino(tetrimino_t *tetrimino);
+
 #endif

@@ -9,7 +9,7 @@
 #include <getopt.h>
 #include "tetris.h"
 
-static struct option long_opt[] = {
+static const struct option long_opt[] = {
     {"help", no_argument, NULL, 'h'},
     {"level", required_argument, NULL, 'L'},
     {"key-left", required_argument, NULL, 'l'},
@@ -24,7 +24,7 @@ static struct option long_opt[] = {
     {NULL, 0, NULL, 0}
 };
 
-static struct flag_association flags_list[] = {
+static const struct flag_association flags_list[] = {
     {'h', &print_help},
     {'L', &flag_level},
     {'l', &flag_left},

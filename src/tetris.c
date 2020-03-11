@@ -11,7 +11,10 @@
 
 int tetris_game(tetris_flags_t tetris_flags)
 {
+    list_t *tetriminos = load_tetriminos();
+
     if (tetris_flags.debug)
-        show_debug(tetris_flags, NULL);
+        show_debug(tetris_flags, tetriminos);
+    destroy_tetrimino_list(&tetriminos);
     return (0);
 }

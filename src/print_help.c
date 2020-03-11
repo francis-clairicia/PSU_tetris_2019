@@ -11,7 +11,7 @@
 
 static void print_options_part_one(void)
 {
-    my_putstr("\n --help\tDisplay this help");
+    my_putstr("\n --help\t\t\tDisplay this help");
     my_putstr("\n -L --level={num}\tStart Tetris at level num (def: 1)");
     my_putstr("\n -l --key-left={K}\tMove the tetrimino LEFT using the K key ");
     my_putstr("def: left arrow)");

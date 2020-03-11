@@ -7,13 +7,17 @@
 
 SRC_NO_TEST			=	src/main.c
 
-SRC_TEST			=	src/tetris.c				\
-						src/init_flags.c			\
-						src/parse_args.c			\
-						src/show_debug.c			\
-						src/print_help.c			\
-						src/parsing/flags.c			\
-						src/parsing/flags_keys.c
+SRC_TEST			=	src/tetris.c							\
+						src/init_flags.c						\
+						src/parse_args.c						\
+						src/show_debug.c						\
+						src/print_help.c						\
+						src/parsing/flags.c						\
+						src/parsing/flags_keys.c				\
+						src/tetriminos/load_tetriminos.c		\
+						src/tetriminos/destroy_tetrimino_list.c	\
+						src/tetriminos/create_tetrimino.c		\
+						src/tetriminos/destroy_tetrimino.c
 
 SRC					=	$(SRC_NO_TEST) $(SRC_TEST)
 
