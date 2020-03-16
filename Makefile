@@ -18,6 +18,8 @@ SRC_TEST			=	src/tetris.c							\
 						src/tetriminos/destroy_tetrimino_list.c	\
 						src/tetriminos/create_tetrimino.c		\
 						src/tetriminos/parse_tetrimino.c		\
+						src/tetriminos/sort_tetriminos.c		\
+						src/tetriminos/print_tetriminos.c		\
 						src/tetriminos/destroy_tetrimino.c		\
 						src/my_usleep.c							\
 						src/game/gameloop.c						\

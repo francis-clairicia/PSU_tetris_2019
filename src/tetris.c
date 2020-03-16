@@ -29,10 +29,26 @@ static void stop_curs_module(void)
     endwin();
 }
 
+static void remove_null_pointers_from_list(list_t **list)
+{
+    int index = 0;
+    list_t *node = *list;
+
+    while (node != NULL) {
+        if (node->data == 0)
+            my_delete_node(list, index, 0);
+        else
+            index += 1;
+        node = my_node(*list, index);
+    }
+}
+
 int tetris_game(tetris_flags_t options)
 {
     list_t *tetriminos = load_tetriminos();
 
+    remove_null_pointers_from_list(&tetriminos);
+    sort_tetriminos(tetriminos);
     if (options.debug)
         show_debug(options, tetriminos);
     init_curs_module();

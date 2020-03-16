@@ -64,5 +64,7 @@ bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
         if (flags_list[flag_index].function(tetris_flags, optarg) == false)
             return (false);
     }
+    if (tetris_flags->nb_cols <= 0)
+        return (false);
     return (true);
 }

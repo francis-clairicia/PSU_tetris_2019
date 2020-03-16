@@ -56,7 +56,7 @@ static bool valid_array_content(char * const *array, int *values)
     values[0] = my_getnbr(first_line[0]);
     values[1] = my_getnbr(first_line[1]);
     values[2] = my_getnbr(first_line[2]);
-    if (!valid_body(&array[1], values))
+    if (values[2] < 0 || !valid_body(&array[1], values))
         return (free_array_and_return(first_line, false));
     return (free_array_and_return(first_line, true));
 }
@@ -72,13 +72,14 @@ void parse_tetrimino(tetrimino_t *tetrimino)
     array = tetrimino->array;
     tetrimino->array = NULL;
     if (valid_array_content(array, values)) {
-        tetrimino->nb_cols = values[0];
-        tetrimino->nb_rows = values[1];
+        tetrimino->width = values[0];
+        tetrimino->height = values[1];
         tetrimino->color = values[2];
-        tetrimino->array = my_malloc_array(values[1], values[0], sizeof(char));
+        tetrimino->array = my_malloc_array(values[0] + 1, values[1], 1);
         if (tetrimino->array == NULL)
-            return;
+            return my_free_array(array);
         for (i = 0; tetrimino->array[i] != NULL; i += 1)
-            my_strncpy(tetrimino->array[i], array[i + 1], tetrimino->nb_cols);
+            my_strncpy(tetrimino->array[i], array[i + 1], tetrimino->width);
     }
+    my_free_array(array);
 }

@@ -9,14 +9,6 @@
 #include "tetris.h"
 #include "my.h"
 
-static void wait_key(void)
-{
-    char *buffer = NULL;
-
-    if (get_next_line(&buffer, 0))
-        free(buffer);
-}
-
 static void print_key(char const *str_key, int key)
 {
     if (key == ' ')
@@ -38,16 +30,14 @@ static void print_flags(tetris_flags_t options)
     my_printf("Size :  %d*%d\n", options.nb_rows, options.nb_cols);
 }
 
-static void print_tetriminos(list_t *tetriminos)
-{
-    my_printf("Tetriminos :  %d\n", my_list_size(tetriminos));
-}
-
 void show_debug(tetris_flags_t options, list_t *tetriminos)
 {
+    char *buffer = NULL;
+
     my_putstr("*** DEBUG MODE ***\n");
     print_flags(options);
     print_tetriminos(tetriminos);
     my_putstr("Press any key to start Tetris");
-    wait_key();
+    if (get_next_line(&buffer, 0))
+        free(buffer);
 }

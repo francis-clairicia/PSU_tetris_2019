@@ -22,7 +22,7 @@ static bool load_file(tetrimino_t *tetrimino, char const *path)
             close(fd);
         return (false);
     }
-    buffer = malloc(sizeof(char) * (infos.st_size + 1));
+    buffer = my_memset(malloc(infos.st_size + 1), 0, infos.st_size + 1);
     if (buffer != NULL) {
         if (read(fd, buffer, infos.st_size) != infos.st_size)
             status = false;
@@ -51,8 +51,8 @@ tetrimino_t *create_tetrimino(char const *tetrimino_path)
     if (tetrimino != NULL) {
         tetrimino->name = get_name(tetrimino_path);
         tetrimino->color = -1;
-        tetrimino->nb_rows = -1;
-        tetrimino->nb_cols = -1;
+        tetrimino->width = -1;
+        tetrimino->height = -1;
         tetrimino->array = NULL;
         if (!load_file(tetrimino, tetrimino_path)) {
             free(tetrimino);

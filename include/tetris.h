@@ -66,8 +66,8 @@ bool flag_debug(tetris_flags_t *flags, char const *option);
 typedef struct tetrimino
 {
     char *name;
-    int nb_rows;
-    int nb_cols;
+    int width;
+    int height;
     int color;
     char **array;
 } tetrimino_t;
@@ -77,5 +77,7 @@ void destroy_tetrimino_list(list_t **list);
 tetrimino_t *create_tetrimino(char const *tetrimino_path);
 void parse_tetrimino(tetrimino_t *tetrimino);
 void destroy_tetrimino(tetrimino_t *tetrimino);
+void sort_tetriminos(list_t *tetriminos);
+void print_tetriminos(list_t *tetriminos);
 
 #endif
