@@ -9,5 +9,9 @@
 
 void destroy_tetrimino(tetrimino_t *tetrimino)
 {
-    return;
+    if (tetrimino == NULL)
+        return;
+    my_free_array(tetrimino->array);
+    free(tetrimino->name);
+    free(tetrimino);
 }

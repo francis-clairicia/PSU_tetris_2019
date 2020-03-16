@@ -7,8 +7,6 @@
 
 #include <stddef.h>
 
-int my_strlen(char const *str);
-
 char *my_strcpy(char *dest, char const *src)
 {
     int i = 0;

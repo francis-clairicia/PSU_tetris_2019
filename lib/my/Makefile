@@ -59,6 +59,7 @@ SRC			=	my_put_nbr.c				\
 				my_nbr_len.c				\
 				get_next_line.c				\
 				join_path.c					\
+				my_str_contains_only.c		\
 				my_memset.c					\
 				my_malloc_array.c
 
@@ -93,7 +94,7 @@ $(NAME):	$(OBJ)
 	$(AR) rc $(NAME) $(OBJ)
 	cp -u $(NAME) ../
 	mkdir -p ../../include
-	cp -u my*.h ../../include
+	cp my*.h ../../include
 
 clean:
 	$(RM) -f $(OBJ)

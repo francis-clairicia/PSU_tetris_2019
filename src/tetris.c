@@ -6,7 +6,6 @@
 */
 
 #include <curses.h>
-#include <sys/ioctl.h>
 #include "tetris.h"
 #include "my.h"
 

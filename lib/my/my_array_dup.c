@@ -9,7 +9,7 @@
 
 int my_array_len(char * const *array);
 
-void my_free_word_array(char **array);
+void my_free_array(void *array);
 
 char *my_strdup(char const *str);
 
@@ -26,7 +26,7 @@ char **my_array_dup(char * const * src)
     while (src[i] != NULL) {
         dest[i] = my_strdup(src[i]);
         if (dest[i] == NULL) {
-            my_free_word_array(dest);
+            my_free_array(dest);
             return (NULL);
         }
         i += 1;

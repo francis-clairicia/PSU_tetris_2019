@@ -8,10 +8,8 @@
 #ifndef HEADER_TETRIS
 #define HEADER_TETRIS
 
-#include <stdbool.h>
+#include "my.h"
 #include "mylist.h"
-
-#define UNUSED __attribute__((unused))
 
 typedef struct tetris
 {
@@ -67,12 +65,17 @@ bool flag_debug(tetris_flags_t *flags, char const *option);
 
 typedef struct tetrimino
 {
-    ;
+    char *name;
+    int nb_rows;
+    int nb_cols;
+    int color;
+    char **array;
 } tetrimino_t;
 
 list_t *load_tetriminos(void);
 void destroy_tetrimino_list(list_t **list);
 tetrimino_t *create_tetrimino(char const *tetrimino_path);
+void parse_tetrimino(tetrimino_t *tetrimino);
 void destroy_tetrimino(tetrimino_t *tetrimino);
 
 #endif

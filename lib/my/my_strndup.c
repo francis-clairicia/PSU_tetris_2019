@@ -16,8 +16,10 @@ char *my_strndup(char const *src, int n)
     int len = my_strlen(src);
     char *dest;
 
-    if (len < 0)
+    if (src == NULL)
         return (NULL);
+    if (n > len)
+        n = len;
     dest = malloc(sizeof(char) * (n + 1));
     if (dest == NULL)
         return (NULL);

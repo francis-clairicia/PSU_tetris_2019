@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <stdbool.h>
 
+#define UNUSED __attribute__((unused))
+
 int my_putchar(char c);
 int my_put_nbr(long nb);
 int my_putnbr_base(int nbr, char const *base);
@@ -33,6 +35,7 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
 char *my_revstr(char *str);
 char *my_strstr(char *str, char const *to_find);
+int my_strstr_index(char const *str, char const *to_find);
 int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strupcase(char *str);
@@ -44,6 +47,7 @@ int my_str_islower(char const *str);
 int my_str_isupper(char const *str);
 int my_str_isprintable(char const *str);
 int my_str_isalphanum(char const *str);
+int my_str_contains_only(char const *str, char const *valid);
 int my_showstr(char const *str);
 int my_showmem(char const *str, int size);
 char *my_strcat(char *dest, char const *src);
