@@ -23,26 +23,34 @@ bool flag_quit(tetris_flags_t *flags, char const *option)
 bool flag_level(tetris_flags_t *flags, char const *option)
 {
     static int called = 0;
+    int level = 0;
 
     called = called + 1;
     if (option == NULL || !my_str_isnum(option))
         return (false);
-    flags->level = my_getnbr(option);
-    return (called == 1 && flags->level >= 1);
+    level = my_getnbr(option);
+    if (level < 1)
+        return (false);
+    flags->level = level;
+    return (called == 1);
 }
 
 bool flag_map(tetris_flags_t *flags, char const *option)
 {
     static int called = 0;
+    int value = 0;
 
     called = called + 1;
     if (option == NULL || !my_str_isnum(option))
         return (false);
+    value = my_getnbr(option);
+    if (value <= 0)
+        return (false);
     if (called == 1)
-        flags->nb_rows = my_getnbr(option);
+        flags->nb_rows = value;
     else if (called == 2)
-        flags->nb_cols = my_getnbr(option);
-    return (called <= 2 && flags->nb_rows > 1 && flags->nb_cols > 1);
+        flags->nb_cols = value;
+    return (called <= 2);
 }
 
 bool flag_next(tetris_flags_t *flags, char const *option UNUSED)

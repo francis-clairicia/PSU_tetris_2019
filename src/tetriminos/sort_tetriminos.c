@@ -14,8 +14,8 @@ static list_t *is_sorted(list_t *list)
     list_t *node = NULL;
 
     for (node = list; node->next != NULL; node = node->next) {
-        first = (tetrimino_t *)(node->data);;
-        second = (tetrimino_t *)(node->next->data);;
+        first = (tetrimino_t *)(node->data);
+        second = (tetrimino_t *)(node->next->data);
         if (my_strcmp(first->name, second->name) != -1)
             return (node);
     }
@@ -34,7 +34,7 @@ void sort_tetriminos(list_t *tetriminos)
 {
     list_t *node = NULL;
 
-    if (tetriminos == NULL)
+    if (tetriminos == NULL || tetriminos->next == NULL)
         return;
     while ((node = is_sorted(tetriminos)) != NULL)
         swap_data(&node->data, &node->next->data);
