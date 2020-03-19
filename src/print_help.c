@@ -35,12 +35,11 @@ static void print_options_part_two(void)
     my_putstr(" -D --debug\t\tDebug mode (def: false)\n");
 }
 
-bool print_help(tetris_flags_t *tetris_flags UNUSED, char const *option UNUSED)
+void print_help(char const *binary)
 {
-    my_putstr("Usage:\t./tetris [options]\n");
+    my_printf("Usage:\t%s [options]\n", binary);
     my_putstr("Options:\n");
     print_options_part_one();
     print_options_part_two();
     exit(0);
-    return (0);
 }

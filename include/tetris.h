@@ -21,8 +21,6 @@ typedef struct tetris
     bool debug;
 } tetris_flags_t;
 
-typedef bool (*flag_function_t)(tetris_flags_t *, char const *);
-
 enum KEYS
 {
     LEFT,
@@ -33,12 +31,6 @@ enum KEYS
     PAUSE
 };
 
-struct flag_association
-{
-    char option;
-    flag_function_t function;
-};
-
 int tetris_game(tetris_flags_t options);
 void show_debug(tetris_flags_t option, list_t *tetriminos);
 void tetris_gameloop(tetris_flags_t options, list_t *tetriminos);
@@ -47,11 +39,17 @@ int my_usleep(int useconds);
 void print_game(tetris_flags_t options, list_t *tetriminos);
 void print_map(int nb_rows, int nb_cols);
 
-tetris_flags_t init_flags(void);
-bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags);
-
 /* Flags functions */
-bool print_help(tetris_flags_t *tetris_flags, char const *option);
+
+typedef bool (*flag_function_t)(tetris_flags_t *, char const *);
+
+struct flag_association
+{
+    char option;
+    flag_function_t function;
+};
+
+void print_help(char const *binary);
 bool flag_left(tetris_flags_t *flags, char const *option);
 bool flag_right(tetris_flags_t *flags, char const *option);
 bool flag_turn(tetris_flags_t *flags, char const *option);

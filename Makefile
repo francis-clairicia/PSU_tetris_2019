@@ -8,8 +8,6 @@
 SRC_NO_TEST			=	src/main.c
 
 SRC_TEST			=	src/tetris.c							\
-						src/init_flags.c						\
-						src/parse_args.c						\
 						src/show_debug.c						\
 						src/print_help.c						\
 						src/parsing/flags.c						\
