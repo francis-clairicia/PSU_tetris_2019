@@ -37,9 +37,6 @@ static bool valid_body(char * const *body, int *values)
     for (row = 0; row < nb_rows; row += 1) {
         if (!my_str_contains_only(body[row], " *"))
             return (false);
-        if (my_strlen(body[row]) >= nb_cols
-        && my_strchr(&body[row][nb_cols], '*') != NULL)
-            return (false);
     }
     return (true);
 }
