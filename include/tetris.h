@@ -31,6 +31,7 @@ enum KEYS
     PAUSE
 };
 
+tetris_flags_t init_flags(void);
 int tetris_game(tetris_flags_t options);
 void show_debug(tetris_flags_t option, list_t *tetriminos);
 void tetris_gameloop(tetris_flags_t options, list_t *tetriminos);

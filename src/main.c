@@ -5,7 +5,6 @@
 ** main.c
 */
 
-#include <curses.h>
 #include <stdlib.h>
 #include <getopt.h>
 #include "tetris.h"
@@ -39,25 +38,20 @@ static const struct flag_association flags_list[] = {
     {'\0', NULL}
 };
 
-static tetris_flags_t init_flags(void)
+static bool get_long_flag_index(char const *flag, bool *require_arg)
 {
-    tetris_flags_t flags;
+    int i = 0;
 
-    flags.level = 1;
-    flags.keys[LEFT] = KEY_LEFT;
-    flags.keys[RIGHT] = KEY_RIGHT;
-    flags.keys[TURN] = KEY_UP;
-    flags.keys[DROP] = KEY_DOWN;
-    flags.keys[QUIT] = 'q';
-    flags.keys[PAUSE] = ' ';
-    flags.nb_rows = 20;
-    flags.nb_cols = 10;
-    flags.show_next = true;
-    flags.debug = false;
-    return (flags);
+    for (i = 0; long_opt[i].name != NULL; i += 1) {
+        if (my_strcmp(long_opt[i].name, flag) == 0) {
+            *require_arg = long_opt[i].has_arg;
+            return (true);
+        }
+    }
+    return (false);
 }
 
-static bool is_a_flag(char flag, int *flag_index)
+static bool get_flag_index(char flag, int *flag_index)
 {
     int i = 0;
 
@@ -70,7 +64,25 @@ static bool is_a_flag(char flag, int *flag_index)
     return (false);
 }
 
-static void parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
+static bool check_args(int ac, char **av)
+{
+    int i = 0;
+    bool require_arg = false;
+
+    for (i = 1; i < ac; i += 1) {
+        if (av[i][0] == '-' && av[i][1] != '-' && my_strlen(&av[i][1]) > 1)
+            return (false);
+        if (my_strncmp(av[i], "--", 2) != 0)
+            continue;
+        if (!get_long_flag_index(&av[i][2], &require_arg))
+            return (false);
+        if (require_arg && !my_strchr(av[i], '='))
+            return (false);
+    }
+    return (true);
+}
+
+static bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
 {
     char short_opt[] = "L:l:r:t:d:q:p:wD";
     char flag = 0;
@@ -79,17 +91,21 @@ static void parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
     while ((flag = getopt_long(ac, av, short_opt, long_opt, NULL)) != -1) {
         if (flag == 'h')
             print_help(av[0]);
-        if (!is_a_flag(flag, &flag_index))
-            break;
+        if (!get_flag_index(flag, &flag_index))
+            return (false);
         if (flags_list[flag_index].function(tetris_flags, optarg) == false)
-            break;
+            return (false);
     }
+    return (true);
 }
 
 int main(int ac, char **av)
 {
     tetris_flags_t tetris_flags = init_flags();
 
-    parse_args(ac, av, &tetris_flags);
+    if (check_args(ac, av) == false)
+        return (84);
+    if (parse_args(ac, av, &tetris_flags) == false)
+        return (84);
     return (tetris_game(tetris_flags));
 }
