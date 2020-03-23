@@ -74,8 +74,10 @@ static bool check_args(int ac, char **av)
             return (false);
         if (my_strncmp(av[i], "--", 2) != 0)
             continue;
-        if (!get_long_flag_index(&av[i][2], &require_arg))
+        if (!get_long_flag_index(&av[i][2], &require_arg)) {
+            my_printf("%s: unrecognized option '%s'\n", av[0], av[i]);
             return (false);
+        }
         if (require_arg && !my_strchr(av[i], '='))
             return (false);
     }
