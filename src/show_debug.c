@@ -17,25 +17,25 @@ static void print_key(char const *str_key, int key)
         my_printf("Key %s :  %c\n", str_key, key);
 }
 
-static void print_flags(tetris_flags_t options)
+static void print_flags(tetris_t tetris)
 {
-    print_key("Left", options.keys[LEFT]);
-    print_key("Right", options.keys[RIGHT]);
-    print_key("Turn", options.keys[TURN]);
-    print_key("Drop", options.keys[DROP]);
-    print_key("Quit", options.keys[QUIT]);
-    print_key("Pause", options.keys[PAUSE]);
-    my_printf("Next :  %s\n", (options.show_next) ? "Yes" : "No");
-    my_printf("Level :  %d\n", options.level);
-    my_printf("Size :  %d*%d\n", options.nb_rows, options.nb_cols);
+    print_key("Left", tetris.keys[LEFT]);
+    print_key("Right", tetris.keys[RIGHT]);
+    print_key("Turn", tetris.keys[TURN]);
+    print_key("Drop", tetris.keys[DROP]);
+    print_key("Quit", tetris.keys[QUIT]);
+    print_key("Pause", tetris.keys[PAUSE]);
+    my_printf("Next :  %s\n", (tetris.show_next) ? "Yes" : "No");
+    my_printf("Level :  %d\n", tetris.level);
+    my_printf("Size :  %d*%d\n", tetris.nb_rows, tetris.nb_cols);
 }
 
-void show_debug(tetris_flags_t options, list_t *tetriminos)
+void show_debug(tetris_t tetris, list_t *tetriminos)
 {
     char *buffer = NULL;
 
     my_putstr("*** DEBUG MODE ***\n");
-    print_flags(options);
+    print_flags(tetris);
     print_tetriminos(tetriminos);
     my_putstr("Press any key to start Tetris");
     if (get_next_line(&buffer, 0))

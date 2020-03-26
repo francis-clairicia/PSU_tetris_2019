@@ -6,3 +6,4 @@ a.out
 tetris
 unit_tests
 coverage
+*.sav

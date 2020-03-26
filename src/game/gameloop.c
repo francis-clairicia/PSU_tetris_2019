@@ -5,15 +5,25 @@
 ** gameloop.c
 */
 
+#include <time.h>
 #include <curses.h>
 #include "tetris.h"
 
-void tetris_gameloop(tetris_flags_t options, list_t *tetriminos)
+static void init_game(tetris_t *tetris)
+{
+    tetris->clock_start = time(NULL);
+    tetris->highscore = get_highscore(HIGHSCORE_SAVE);
+}
+
+void tetris_gameloop(tetris_t tetris, list_t *tetriminos)
 {
     int key = 0;
 
-    while ((key = getch()) != options.keys[QUIT]) {
-        my_usleep(10000);
-        print_game(options, tetriminos);
+    if (show_menu(tetris) == false)
+        return;
+    init_game(&tetris);
+    while ((key = getch()) != tetris.keys[QUIT]) {
+        my_usleep(50000);
+        print_game(tetris, tetriminos);
     }
 }

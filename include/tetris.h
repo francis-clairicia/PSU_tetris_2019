@@ -10,6 +10,7 @@
 
 #include "my.h"
 #include "mylist.h"
+#include "rect.h"
 
 typedef struct tetris
 {
@@ -19,7 +20,11 @@ typedef struct tetris
     int nb_cols;
     bool show_next;
     bool debug;
-} tetris_flags_t;
+    int highscore;
+    int score;
+    long clock_start;
+    int lines_deleted;
+} tetris_t;
 
 enum KEYS
 {
@@ -31,18 +36,28 @@ enum KEYS
     PAUSE
 };
 
-tetris_flags_t init_flags(void);
-int tetris_game(tetris_flags_t options);
-void show_debug(tetris_flags_t option, list_t *tetriminos);
-void tetris_gameloop(tetris_flags_t options, list_t *tetriminos);
+tetris_t init_tetris(void);
+int tetris_game(tetris_t tetris);
+void show_debug(tetris_t option, list_t *tetriminos);
+void tetris_gameloop(tetris_t tetris, list_t *tetriminos);
 int my_usleep(int useconds);
 
-void print_game(tetris_flags_t options, list_t *tetriminos);
+/* Gameplay */
+
+int show_menu(tetris_t tetris);
+void print_game(tetris_t tetris, list_t *tetriminos);
 void print_map(int nb_rows, int nb_cols);
+void print_gameboard(tetris_t tetris);
 
-/* Flags functions */
+/* HighScore */
 
-typedef bool (*flag_function_t)(tetris_flags_t *, char const *);
+#define HIGHSCORE_SAVE "score.sav"
+int get_highscore(char const *save_file);
+void save_highscore(int highscore, char const *save_file);
+
+/* tetris functions */
+
+typedef bool (*flag_function_t)(tetris_t *, char const *);
 
 struct flag_association
 {
@@ -51,16 +66,16 @@ struct flag_association
 };
 
 void print_help(char const *binary);
-bool flag_left(tetris_flags_t *flags, char const *option);
-bool flag_right(tetris_flags_t *flags, char const *option);
-bool flag_turn(tetris_flags_t *flags, char const *option);
-bool flag_drop(tetris_flags_t *flags, char const *option);
-bool flag_quit(tetris_flags_t *flags, char const *option);
-bool flag_pause(tetris_flags_t *flags, char const *option);
-bool flag_level(tetris_flags_t *flags, char const *option);
-bool flag_map(tetris_flags_t *flags, char const *option);
-bool flag_next(tetris_flags_t *flags, char const *option);
-bool flag_debug(tetris_flags_t *flags, char const *option);
+bool flag_left(tetris_t *tetris, char const *option);
+bool flag_right(tetris_t *tetris, char const *option);
+bool flag_turn(tetris_t *tetris, char const *option);
+bool flag_drop(tetris_t *tetris, char const *option);
+bool flag_quit(tetris_t *tetris, char const *option);
+bool flag_pause(tetris_t *tetris, char const *option);
+bool flag_level(tetris_t *tetris, char const *option);
+bool flag_map(tetris_t *tetris, char const *option);
+bool flag_next(tetris_t *tetris, char const *option);
+bool flag_debug(tetris_t *tetris, char const *option);
 
 typedef struct tetrimino
 {
@@ -78,5 +93,6 @@ void parse_tetrimino(tetrimino_t *tetrimino);
 void destroy_tetrimino(tetrimino_t *tetrimino);
 void sort_tetriminos(list_t *tetriminos);
 void print_tetriminos(list_t *tetriminos);
+void key_options(tetris_t tetris);
 
 #endif

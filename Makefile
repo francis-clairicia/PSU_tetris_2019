@@ -5,13 +5,21 @@
 ## Makefile
 ##
 
-SRC_NO_TEST			=	src/main.c
+SRC_NO_TEST			=	src/main.c								\
+						src/tetris.c							\
+						src/game/gameloop.c						\
+						src/game/show_menu.c					\
+						src/game/print_game.c					\
+						src/game/print_frame.c					\
+						src/game/print_map.c					\
+						src/game/print_gameboard.c				\
+						src/game/print_keys.c
 
-SRC_TEST			=	src/tetris.c							\
-						src/init_flags.c						\
+SRC_TEST			=	src/init_flags.c						\
 						src/show_debug.c						\
 						src/print_help.c						\
 						src/parsing/flags.c						\
+						src/parsing/flags_map.c					\
 						src/parsing/flags_keys.c				\
 						src/tetriminos/load_tetriminos.c		\
 						src/tetriminos/destroy_tetrimino_list.c	\
@@ -21,9 +29,7 @@ SRC_TEST			=	src/tetris.c							\
 						src/tetriminos/print_tetriminos.c		\
 						src/tetriminos/destroy_tetrimino.c		\
 						src/my_usleep.c							\
-						src/game/gameloop.c						\
-						src/game/print_game.c					\
-						src/game/print_map.c
+						src/highscore.c
 
 SRC					=	$(SRC_NO_TEST) $(SRC_TEST)
 

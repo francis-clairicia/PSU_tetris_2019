@@ -8,20 +8,24 @@
 #include <curses.h>
 #include "tetris.h"
 
-tetris_flags_t init_flags(void)
+tetris_t init_tetris(void)
 {
-    tetris_flags_t flags;
+    tetris_t tetris;
 
-    flags.level = 1;
-    flags.keys[LEFT] = KEY_LEFT;
-    flags.keys[RIGHT] = KEY_RIGHT;
-    flags.keys[TURN] = KEY_UP;
-    flags.keys[DROP] = KEY_DOWN;
-    flags.keys[QUIT] = 'q';
-    flags.keys[PAUSE] = ' ';
-    flags.nb_rows = 20;
-    flags.nb_cols = 10;
-    flags.show_next = true;
-    flags.debug = false;
-    return (flags);
+    tetris.level = 1;
+    tetris.keys[LEFT] = KEY_LEFT;
+    tetris.keys[RIGHT] = KEY_RIGHT;
+    tetris.keys[TURN] = KEY_UP;
+    tetris.keys[DROP] = KEY_DOWN;
+    tetris.keys[QUIT] = 'q';
+    tetris.keys[PAUSE] = ' ';
+    tetris.nb_rows = 20;
+    tetris.nb_cols = 10;
+    tetris.show_next = true;
+    tetris.debug = false;
+    tetris.score = 0;
+    tetris.highscore = 0;
+    tetris.clock_start = 0;
+    tetris.lines_deleted = 0;
+    return (tetris);
 }

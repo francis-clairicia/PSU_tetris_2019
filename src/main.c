@@ -40,10 +40,14 @@ static const struct flag_association flags_list[] = {
 
 static bool get_long_flag_index(char const *flag, bool *require_arg)
 {
+    char long_flag[my_strlen(flag) + 1];
+    int equal_index = my_strchr_index(my_strcpy(long_flag, flag), '=');
     int i = 0;
 
+    if (equal_index >= 0)
+        long_flag[equal_index] = '\0';
     for (i = 0; long_opt[i].name != NULL; i += 1) {
-        if (my_strcmp(long_opt[i].name, flag) == 0) {
+        if (my_strcmp(long_opt[i].name, long_flag) == 0) {
             *require_arg = long_opt[i].has_arg;
             return (true);
         }
@@ -84,7 +88,7 @@ static bool check_args(int ac, char **av)
     return (true);
 }
 
-static bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
+static bool parse_args(int ac, char **av, tetris_t *tetris)
 {
     char short_opt[] = "L:l:r:t:d:q:p:wD";
     char flag = 0;
@@ -95,7 +99,7 @@ static bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
             print_help(av[0]);
         if (!get_flag_index(flag, &flag_index))
             return (false);
-        if (flags_list[flag_index].function(tetris_flags, optarg) == false)
+        if (flags_list[flag_index].function(tetris, optarg) == false)
             return (false);
     }
     return (true);
@@ -103,11 +107,11 @@ static bool parse_args(int ac, char **av, tetris_flags_t *tetris_flags)
 
 int main(int ac, char **av)
 {
-    tetris_flags_t tetris_flags = init_flags();
+    tetris_t tetris = init_tetris();
 
     if (check_args(ac, av) == false)
         return (84);
-    if (parse_args(ac, av, &tetris_flags) == false)
+    if (parse_args(ac, av, &tetris) == false)
         return (84);
-    return (tetris_game(tetris_flags));
+    return (tetris_game(tetris));
 }
