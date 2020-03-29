@@ -10,13 +10,15 @@
 #include "my.h"
 #include "mylist.h"
 
-static bool str_ends_with(char *str, char const *to_find)
+static bool str_ends_with(char const *str, char const *to_find)
 {
-    char *ptr = my_strstr(str, to_find);
+    int start = my_strlen(str) - my_strlen(to_find);
+    char const *ptr = NULL;
 
-    if (ptr == NULL)
+    if (start < 0)
         return (false);
-    return (my_strlen(ptr) == my_strlen(to_find));
+    ptr = &str[start];
+    return (my_strcmp(ptr, to_find) == 0);
 }
 
 list_t *load_tetriminos(void)
