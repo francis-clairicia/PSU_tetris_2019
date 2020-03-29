@@ -30,7 +30,6 @@ void print_map(tetris_t *tetris)
         for (x = 0; x < tetris->nb_cols; x += 1) {
             print_box(tetris->map[y][x], frame.y + y + 1, frame.x + x + 1);
         }
-        pair_color
     }
     tetris->frame = frame;
 }
