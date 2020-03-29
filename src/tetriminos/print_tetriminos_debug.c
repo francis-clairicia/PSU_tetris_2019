@@ -26,7 +26,7 @@ static void print_error(tetrimino_t *tetrimino)
     my_printf("Tetriminos :  Name %s :  Error\n", tetrimino->name);
 }
 
-void print_tetriminos(list_t *tetriminos)
+void print_tetriminos_debug(list_t *tetriminos)
 {
     tetrimino_t *tetrimino = NULL;
     list_t *node = NULL;

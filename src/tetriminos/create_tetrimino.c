@@ -54,6 +54,7 @@ tetrimino_t *create_tetrimino(char const *tetrimino_path)
         tetrimino->width = -1;
         tetrimino->height = -1;
         tetrimino->array = NULL;
+        tetrimino->pos = (vector_t){0, 0};
         if (!load_file(tetrimino, tetrimino_path)) {
             free(tetrimino);
             return (NULL);

@@ -70,16 +70,17 @@ static void remove_non_valid_tetriminos(list_t **list)
 int tetris_game(tetris_t tetris)
 {
     list_t *tetriminos = load_tetriminos();
+    int output = 0;
 
     remove_null_pointers_from_list(&tetriminos);
     sort_tetriminos(tetriminos);
     if (tetris.debug)
         show_debug(tetris, tetriminos);
     remove_non_valid_tetriminos(&tetriminos);
-    if (!init_curs_module())
+    if (tetriminos == NULL || !init_curs_module())
         return (84);
-    tetris_gameloop(tetris, tetriminos);
+    output = tetris_gameloop(tetris, tetriminos);
     stop_curs_module();
     destroy_tetrimino_list(&tetriminos);
-    return (0);
+    return (output);
 }

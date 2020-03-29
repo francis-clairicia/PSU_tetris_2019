@@ -6,13 +6,31 @@
 */
 
 #include <curses.h>
-#include "rect.h"
+#include "tetris.h"
 
-void print_map(int nb_rows, int nb_cols)
+static void print_box(char box, int row, int col)
 {
-    int x = (COLS - (nb_cols + 2)) / 2;
+    if (box == 0)
+        return;
+    init_pair(2, box, COLOR_BLACK);
+    attron(COLOR_PAIR(2));
+    mvaddch(row, col, '*');
+    attroff(COLOR_PAIR(2));
+}
+
+void print_map(tetris_t *tetris)
+{
+    int x = (COLS - (tetris->nb_cols + 2)) / 2;
     int y = 0;
-    rect_t frame = {x, y, nb_cols, nb_rows};
+    rect_t frame = {x, y, tetris->nb_cols, tetris->nb_rows};
+    int pair_color = 2;
 
     print_frame(frame);
+    for (y = 0; y < tetris->nb_rows; y += 1) {
+        for (x = 0; x < tetris->nb_cols; x += 1) {
+            print_box(tetris->map[y][x], frame.y + y + 1, frame.x + x + 1);
+        }
+        pair_color
+    }
+    tetris->frame = frame;
 }

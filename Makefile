@@ -13,7 +13,12 @@ SRC_NO_TEST			=	src/main.c								\
 						src/game/print_frame.c					\
 						src/game/print_map.c					\
 						src/game/print_gameboard.c				\
-						src/game/print_keys.c
+						src/game/print_keys.c					\
+						src/tetriminos/print_tetrimino.c		\
+						src/game/event.c						\
+						src/game/event_functions/move.c			\
+						src/game/event_functions/turn.c			\
+						src/game/event_functions/drop.c
 
 SRC_TEST			=	src/init_flags.c						\
 						src/show_debug.c						\
@@ -26,8 +31,9 @@ SRC_TEST			=	src/init_flags.c						\
 						src/tetriminos/create_tetrimino.c		\
 						src/tetriminos/parse_tetrimino.c		\
 						src/tetriminos/sort_tetriminos.c		\
-						src/tetriminos/print_tetriminos.c		\
+						src/tetriminos/print_tetriminos_debug.c	\
 						src/tetriminos/destroy_tetrimino.c		\
+						src/tetriminos/move_tetrimino.c			\
 						src/my_usleep.c							\
 						src/highscore.c
 

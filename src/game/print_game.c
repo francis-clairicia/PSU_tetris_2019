@@ -8,11 +8,12 @@
 #include <curses.h>
 #include "tetris.h"
 
-void print_game(tetris_t tetris, list_t *tetriminos UNUSED)
+void print_game(tetris_t *tetris, tetrimino_t **tetrimino, bool new)
 {
     clear();
-    print_map(tetris.nb_rows, tetris.nb_cols);
-    print_gameboard(tetris);
-    key_options(tetris);
+    print_map(tetris);
+    print_gameboard(*tetris);
+    print_tetrimino(tetrimino[ACTUAL], tetris->frame, new);
+    key_options(*tetris);
     refresh();
 }

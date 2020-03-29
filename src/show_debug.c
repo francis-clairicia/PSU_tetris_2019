@@ -36,7 +36,7 @@ void show_debug(tetris_t tetris, list_t *tetriminos)
 
     my_putstr("*** DEBUG MODE ***\n");
     print_flags(tetris);
-    print_tetriminos(tetriminos);
+    print_tetriminos_debug(tetriminos);
     my_putstr("Press any key to start Tetris");
     if (get_next_line(&buffer, 0))
         free(buffer);
