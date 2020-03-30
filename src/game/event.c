@@ -19,6 +19,8 @@ static tetris_event_handler_t get_function_handler(int key, int *tetris_keys)
     int i = 0;
     int nb_functions = sizeof(event_hander) / sizeof(event_hander[0]);
 
+    if (key == -1)
+        return (NULL);
     for (i = 0; i < nb_functions; i += 1) {
         if (key == tetris_keys[i])
             return (event_hander[i]);

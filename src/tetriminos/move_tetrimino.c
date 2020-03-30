@@ -9,8 +9,6 @@
 
 static bool check_fall(tetris_t *tetris, int x, int y)
 {
-    if (y < 0)
-        return (false);
     if (y < tetris->nb_rows) {
         if (tetris->map[y][x] == 0)
             return (false);
@@ -54,7 +52,7 @@ bool move_tetrimino(tetris_t *tetris, tetrimino_t *tetrimino, int move_speed)
     int y = (tetrimino->pos.y + last_row) - tetris->frame.y - 1 + move_speed;
     bool stop = false;
 
-    for (col = 0; col < tetrimino->width; col += 1) {
+    for (col = 0; y > 0 && col < tetrimino->width; col += 1) {
         if (tetrimino->form[last_row][col] == '*') {
             x = (tetrimino->pos.x + col) - tetris->frame.x - 1;
             stop = check_fall(tetris, x, y);
