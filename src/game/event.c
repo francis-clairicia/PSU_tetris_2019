@@ -6,13 +6,12 @@
 */
 
 #include "tetris.h"
-#include "event.h"
+#include "key_event.h"
 
 static const tetris_event_handler_t event_hander[] = {
     [LEFT] = move_left,
     [RIGHT] = move_right,
-    [TURN] = turn_tetrimino,
-    [DROP] = drop_tetrimino
+    [TURN] = turn_tetrimino
 };
 
 static tetris_event_handler_t get_function_handler(int key, int *tetris_keys)
@@ -36,10 +35,11 @@ bool tetris_key_event(int key, tetris_t *tetris, tetrimino_t *tetrimino,
 
     nb_frames += 1;
     if (handler != NULL)
-        move_speed += handler(tetris, tetrimino);
-    if (nb_frames <= frames_per_fall)
-        move_speed = 0;
-    else
+        handler(tetris, tetrimino);
+    if (nb_frames <= frames_per_fall) {
+        if (key != tetris->keys[DROP])
+            move_speed = 0;
+    } else
         nb_frames = 0;
     return (move_tetrimino(tetris, tetrimino, move_speed));
 }

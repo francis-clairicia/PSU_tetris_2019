@@ -93,6 +93,7 @@ typedef struct tetrimino
     int height;
     int color;
     char **array;
+    char **form;
     vector_t pos;
 } tetrimino_t;
 

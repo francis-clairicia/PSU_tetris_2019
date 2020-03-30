@@ -20,7 +20,7 @@ static bool check_fall(tetris_t *tetris, int x, int y)
 
 static int set_map_value(tetrimino_t *tetrimino, int row, int col)
 {
-    if (tetrimino->array[row][col] == '*')
+    if (tetrimino->form[row][col] == '*')
         return (tetrimino->color);
     return (0);
 }
@@ -31,12 +31,17 @@ static void stop_tetrimino(tetris_t *tetris, tetrimino_t *tetrimino, int speed)
     int col = 0;
     int x = 0;
     int y = 0;
+    int former = 0;
+    int actual = 0;
 
     for (row = 0; row < tetrimino->height; row += 1) {
         for (col = 0; col < tetrimino->width; col += 1) {
             x = (tetrimino->pos.x + col) - tetris->frame.x - 1;
             y = (tetrimino->pos.y + row) - tetris->frame.y - 1 + (speed - 1);
+            former = tetris->map[y][x];
             tetris->map[y][x] = set_map_value(tetrimino, row, col);
+            actual = tetris->map[y][x];
+            tetris->map[y][x] = (former != 0) ? former : actual;
         }
     }
 }
@@ -50,7 +55,7 @@ bool move_tetrimino(tetris_t *tetris, tetrimino_t *tetrimino, int move_speed)
     bool stop = false;
 
     for (col = 0; col < tetrimino->width; col += 1) {
-        if (tetrimino->array[last_row][col] == '*') {
+        if (tetrimino->form[last_row][col] == '*') {
             x = (tetrimino->pos.x + col) - tetris->frame.x - 1;
             stop = check_fall(tetris, x, y);
         }

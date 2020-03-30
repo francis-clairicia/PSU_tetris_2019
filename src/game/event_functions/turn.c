@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "tetris.h"
 
-bool turn_tetrimino(tetris_t *tetris UNUSED, tetrimino_t *tetrimino)
+void turn_tetrimino(tetris_t *tetris UNUSED, tetrimino_t *tetrimino)
 {
     int x = 0;
     int y = 0;
@@ -17,15 +17,14 @@ bool turn_tetrimino(tetris_t *tetris UNUSED, tetrimino_t *tetrimino)
     char **new_array = my_malloc_array(height + 1, width, sizeof(char));
 
     if (new_array == NULL)
-        return (false);
+        return;
     for (y = 0; y < height; y += 1) {
         for (x = 0; x < width; x += 1) {
-            new_array[width - 1 - x][y] = tetrimino->array[y][x];
+            new_array[width - 1 - x][y] = tetrimino->form[y][x];
         }
     }
-    my_free_array(tetrimino->array);
-    tetrimino->array = new_array;
+    my_free_array(tetrimino->form);
+    tetrimino->form = new_array;
     tetrimino->width = height;
     tetrimino->height = width;
-    return (false);
 }

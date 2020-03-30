@@ -11,9 +11,9 @@
 void print_game(tetris_t *tetris, tetrimino_t **tetrimino, bool new)
 {
     clear();
+    print_tetrimino(tetrimino[ACTUAL], tetris->frame, new);
     print_map(tetris);
     print_gameboard(*tetris);
-    print_tetrimino(tetrimino[ACTUAL], tetris->frame, new);
     key_options(*tetris);
     refresh();
 }

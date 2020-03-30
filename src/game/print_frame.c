@@ -22,16 +22,15 @@ static void print_horizontal_line(int row, int col, int width)
 
 void print_frame(rect_t rect)
 {
-    char line[rect.width + 1];
+    int x_min = rect.x;
+    int x_max = rect.x + rect.width - 1;
     int i = 0;
 
-    my_memset(line, ' ', rect.width);
-    line[rect.width] = 0;
-    line[0] = '|';
-    line[rect.width - 1] =  '|';
     print_horizontal_line(rect.y, rect.x, rect.width);
-    for (i = 0; i < rect.height; i += 1)
-        mvprintw(rect.y + 1 + i, rect.x, line);
+    for (i = 0; i < rect.height; i += 1) {
+        mvprintw(rect.y + 1 + i, x_min, "|");
+        mvprintw(rect.y + 1 + i, x_max, "|");
+    }
     print_horizontal_line(rect.y + 1 + i, rect.x, rect.width);
 }
 

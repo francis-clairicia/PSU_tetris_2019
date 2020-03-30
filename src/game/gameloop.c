@@ -43,14 +43,14 @@ int tetris_gameloop(tetris_t tetris, list_t *tetriminos)
     tetrimino_t *tetrimino[2] = {NULL, NULL};
     bool new = true;
     int key = 0;
-    int frames_fall = 5;
+    int frames_fall = 25;
 
     if (show_menu(tetris) == false)
         return (0);
     if (!init_game(&tetris))
         return (84);
     while ((key = getch()) != tetris.keys[QUIT]) {
-        my_usleep(50 * 1000);
+        my_usleep(10 * 1000);
         get_actual_and_next_tetrimino(tetrimino, tetriminos, new);
         print_game(&tetris, tetrimino, new);
         new = tetris_key_event(key, &tetris, tetrimino[ACTUAL], frames_fall);
