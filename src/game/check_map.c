@@ -13,7 +13,6 @@ static bool all_line_full(char const *line, int length)
     int i = 0;
 
     for (i = 0; i < length - 2; i += 1) {
-        fprintf(stderr, " - %d", line[i]);
         if (line[i] == 0)
             return (false);
     }
@@ -43,8 +42,6 @@ int check_map(tetris_t *tetris, int actual_frame_speed)
             tetris->level += ((tetris->lines_deleted % 10) == 0);
             actual_frame_speed += ((tetris->lines_deleted % 10) == 0);
         }
-        fprintf(stderr, "\n");
     }
-    fprintf(stderr, "-------------\n");
     return (actual_frame_speed);
 }
