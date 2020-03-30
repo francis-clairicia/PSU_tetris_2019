@@ -54,6 +54,8 @@ int tetris_gameloop(tetris_t tetris, list_t *tetriminos)
         get_actual_and_next_tetrimino(tetrimino, tetriminos, new);
         print_game(&tetris, tetrimino, new);
         new = tetris_key_event(key, &tetris, tetrimino[ACTUAL], frames_fall);
+        if (new)
+            frames_fall = check_map(&tetris, frames_fall);
     }
     stop_game(&tetris);
     return (0);

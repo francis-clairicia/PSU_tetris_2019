@@ -17,7 +17,8 @@ SRC_NO_TEST			=	src/main.c								\
 						src/tetriminos/print_tetrimino.c		\
 						src/game/event.c						\
 						src/game/event_functions/move.c			\
-						src/game/event_functions/turn.c
+						src/game/event_functions/turn.c			\
+						src/game/check_map.c
 
 SRC_TEST			=	src/init_flags.c						\
 						src/show_debug.c						\

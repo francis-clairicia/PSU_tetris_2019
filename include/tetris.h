@@ -115,6 +115,7 @@ void print_game(tetris_t *tetris, tetrimino_t **tetrimino, bool new);
 void print_gameboard(tetris_t tetris);
 bool tetris_key_event(int key, tetris_t *tetris, tetrimino_t *tetrimino,
     int frames_per_fall);
+int check_map(tetris_t *tetris, int actual_frame_speed);
 void key_options(tetris_t tetris);
 
 #endif
