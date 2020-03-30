@@ -50,7 +50,7 @@ int tetris_gameloop(tetris_t tetris, list_t *tetriminos)
     if (!init_game(&tetris))
         return (84);
     while ((key = getch()) != tetris.keys[QUIT]) {
-        my_usleep(10 * 1000);
+        my_usleep(50 * 1000);
         get_actual_and_next_tetrimino(tetrimino, tetriminos, new);
         print_game(&tetris, tetrimino, new);
         new = tetris_key_event(key, &tetris, tetrimino[ACTUAL], frames_fall);

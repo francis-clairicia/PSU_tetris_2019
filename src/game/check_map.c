@@ -12,7 +12,7 @@ static bool all_line_full(char const *line, int length)
 {
     int i = 0;
 
-    for (i = 0; i < length - 2; i += 1) {
+    for (i = 0; i < length; i += 1) {
         if (line[i] == 0)
             return (false);
     }
