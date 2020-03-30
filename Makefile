@@ -12,6 +12,7 @@ SRC_NO_TEST			=	src/main.c								\
 						src/game/print_game.c					\
 						src/game/print_frame.c					\
 						src/game/print_map.c					\
+						src/game/next_tetriminos.c				\
 						src/game/print_gameboard.c				\
 						src/game/print_keys.c					\
 						src/tetriminos/print_tetrimino.c		\
