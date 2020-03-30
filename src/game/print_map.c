@@ -22,7 +22,7 @@ void print_map(tetris_t *tetris)
 {
     int x = (COLS - (tetris->nb_cols + 2)) / 2;
     int y = 0;
-    rect_t frame = {x, y, tetris->nb_cols, tetris->nb_rows};
+    rect_t frame = {x, y, tetris->nb_cols + 2, tetris->nb_rows};
     int row = 0;
     int col = 0;
     int pair_color = 2;

@@ -43,7 +43,7 @@ int tetris_gameloop(tetris_t tetris, list_t *tetriminos)
     tetrimino_t *tetrimino[2] = {NULL, NULL};
     bool new = true;
     int key = 0;
-    int frames_fall = 25;
+    int frames_fall = 5;
 
     if (show_menu(tetris) == false)
         return (0);
